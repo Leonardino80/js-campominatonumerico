@@ -8,34 +8,36 @@
 var numeri_random = [];
 
 // imposto una funzione per generare un numero casuale da 1 a 100.
-function  number_generator(){
-var number1to100 = Math.floor(Math.random() * 100 + 1);
-return number1to100;
+function  number_generator( min, max){
+var number_Range = Math.floor(Math.random() * (max- min) + 1);
+return number_Range;
 }
 
 // utilizzo un ciclo for per riempire l'array
-for (var i = 0; i < 16 ; i++) {
-  numeri_random.push(number_generator());
+while (numeri_random.length < 16) {
+  var numero = number_generator(1,100);
+  if(numeri_random.includes(numero) == false){
+  numeri_random.push(numero);
+  }
 }
-console.log(numeri_random);
+console.log(numeri_random)
 
 // In seguito deve chiedere all’utente di inserire un numero da 1 a 100 alla volta,
 var numero_presente = false;
-var punteggio = []
+var punteggio = [];
 // ciclo do while di richiesta
 var i = 0;
-do {
-  var numero_utente = prompt('inserisci un numero');
-  if (numero_utente === numeri_random[i]) {
-    numero_presente = true ;
-    console.log('hai perso')
+while (i < 84) {
+  var numero_utente = parseInt(prompt('inserisci un numero'));
+  if(numeri_random[i] === numero_utente){
+    numero_presente = true;
+  }
+  if( numero_presente) {
+    alert('hai perso');
     break;
-  } else {
-    punteggio.push(numero_utente);
   }
   i++;
-
-} while ( i < 100 );
+}
 
 
   // se il numero è presente nella lista dei numeri generati, la partita termina, altrimenti continua chiedendo all’utente un altro numero.
